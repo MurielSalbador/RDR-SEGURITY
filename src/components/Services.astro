@@ -1,0 +1,27 @@
+---
+const services = [
+  { title: 'Portería y control de accesos', text: 'Gestión profesional de entradas y salidas, supervisión de visitantes, control de vehículos y aplicación de medidas de seguridad para proteger su propiedad, con equipo capacitado y tecnología avanzada.' },
+  { title: 'Servicio de monitoreo', text: 'Vigilancia continua y personalizada con tecnología de vanguardia y un equipo dedicado, manteniendo una mirada constante para garantizar su protección en todo momento.' },
+  { title: 'Servicio de patrullaje', text: 'Patrullaje inteligente con puntos estratégicos analizados previamente, rondas periódicas y control automático. Los vehículos se evalúan según las necesidades de cada cliente.' },
+  { title: 'Custodio personal', text: 'Acompañamiento profesional y discreto para quienes buscan una protección exclusiva. Nuestro equipo de custodios garantiza su seguridad en todo momento y en todo desplazamiento.' },
+  { title: 'Capacitación', text: 'Formación profesional de vanguardia. Realizamos cursos de perfeccionamiento y especialización, garantizando la actualización constante que exige el mundo de la seguridad.' },
+  { title: 'Supervisión y rendición de cuentas', text: 'Servicio constantemente supervisado, con sistema de auditoría interna que permite establecer una rendición de cuentas acordada según las necesidades de cada cliente.' },
+];
+---
+<section class="services pad" id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Servicios</div>
+      <h2>Cobertura completa, de la portería a la custodia personal.</h2>
+    </div>
+    <div class="services-list">
+      {services.map((s, i) => (
+        <div class="service-row reveal">
+          <div class="service-num">{String(i + 1).padStart(2, '0')}</div>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

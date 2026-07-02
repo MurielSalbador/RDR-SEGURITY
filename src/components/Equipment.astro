@@ -1,0 +1,25 @@
+---
+const equip = [
+  { tag: '// Comunicación', title: 'Sistema interno', text: 'Botones de alerta, geoposicionamiento, teléfonos móviles y tablets conectados en tiempo real.' },
+  { tag: '// Movilidad', title: 'Flota moderna', text: 'Vehículos 4x4, autos, cuatriciclos y motocicletas según las necesidades de cada operativo.' },
+  { tag: '// Presencia', title: 'Uniformes', text: 'Personal correctamente uniformado de acuerdo a la misión y función encomendada.' },
+  { tag: '// Respaldo', title: 'Seguros', text: 'Equipo asegurado e inscripto, garantizando responsabilidad civil y riesgos por accidentes laborales.' },
+];
+---
+<section class="pad" id="equipamiento">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Equipamiento</div>
+      <h2>Tecnología y recursos que respaldan cada servicio.</h2>
+    </div>
+    <div class="equip-grid reveal">
+      {equip.map((e) => (
+        <div class="equip-card">
+          <span class="mono">{e.tag}</span>
+          <h4>{e.title}</h4>
+          <p>{e.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

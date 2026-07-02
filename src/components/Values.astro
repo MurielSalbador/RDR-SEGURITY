@@ -1,0 +1,27 @@
+---
+const values = [
+  { icon: '🛡️', title: 'Compromiso', text: 'Cumplir con cada servicio de manera responsable, adaptándose a las necesidades de cada cliente.' },
+  { icon: '🤝', title: 'Profesionalismo', text: 'Personal capacitado, uniformado y en constante formación para brindar un servicio de excelencia.' },
+  { icon: '🔒', title: 'Confianza', text: 'Construir relaciones sólidas mediante un servicio transparente, responsable y seguro.' },
+  { icon: '⚙️', title: 'Innovación', text: 'Incorporar tecnología de vanguardia para mejorar la prevención, el monitoreo y la protección.' },
+  { icon: '📈', title: 'Mejora continua', text: 'Auditorías, supervisiones y capacitaciones permanentes para optimizar la calidad del servicio.' },
+  { icon: '👥', title: 'Trabajo en equipo', text: 'Equipo interdisciplinario que trabaja de manera coordinada para garantizar la seguridad de cada cliente.' },
+];
+---
+<section class="pad">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nuestros valores</div>
+      <h2>Los principios detrás de cada guardia, cada ronda, cada informe.</h2>
+    </div>
+    <div class="values-grid reveal">
+      {values.map((v) => (
+        <div class="value-card">
+          <span class="value-icon">{v.icon}</span>
+          <h4>{v.title}</h4>
+          <p>{v.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

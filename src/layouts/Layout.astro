@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'RDR Seguridad Privada — Soluciones integrales de seguridad',
+  description = 'Portería, monitoreo, patrullaje y custodia personal para empresas, barrios privados e instituciones. Prevención real, personal capacitado y supervisión constante.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/jpeg" href="/rdr-logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.15,
+        smoothWheel: true,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target as HTMLElement, { offset: -90 });
+          }
+        });
+      });
+
+      document.querySelectorAll('.reveal').forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          onEnter: () => el.classList.add('is-visible'),
+          once: true,
+        });
+      });
+
+      const shieldFrame = document.querySelector<HTMLElement>('.hero-shield-frame');
+      const heroShield = document.querySelector<HTMLElement>('.hero-shield');
+      if (shieldFrame && heroShield) {
+        heroShield.addEventListener('mousemove', (e) => {
+          const rect = heroShield.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(shieldFrame, {
+            rotateY: x * 24,
+            rotateX: -y * 24,
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: true,
+          });
+        });
+        heroShield.addEventListener('mouseleave', () => {
+          gsap.to(shieldFrame, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'power2.out' });
+        });
+      }
+
+      const promo = document.getElementById('promo');
+      const promoClose = document.getElementById('promo-close');
+      if (promo && promoClose) {
+        if (sessionStorage.getItem('rdr-promo-closed') === '1') {
+          promo.style.display = 'none';
+        }
+        promoClose.addEventListener('click', () => {
+          promo.style.display = 'none';
+          sessionStorage.setItem('rdr-promo-closed', '1');
+        });
+      }
+    </script>
+  </body>
+</html>
