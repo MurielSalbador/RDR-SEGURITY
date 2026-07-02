@@ -16,11 +16,14 @@ const values = [
     </div>
     <div class="values-grid reveal">
       {values.map((v) => (
-        <div class="value-card">
-          <span class="value-icon">{v.icon}</span>
-          <h4>{v.title}</h4>
+        <details class="value-card">
+          <summary>
+            <span class="value-icon">{v.icon}</span>
+            <h4>{v.title}</h4>
+            <span class="chevron">▼</span>
+          </summary>
           <p>{v.text}</p>
-        </div>
+        </details>
       ))}
     </div>
   </div>

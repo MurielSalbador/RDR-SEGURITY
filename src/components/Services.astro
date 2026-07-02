@@ -23,5 +23,26 @@ const services = [
         </div>
       ))}
     </div>
+    <div class="carousel-dots reveal">
+      {services.map((s, i) => (
+        <span class={`cdot ${i === 0 ? 'active' : ''}`}></span>
+      ))}
+    </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const list = document.querySelector('.services-list');
+    const dots = document.querySelectorAll('.carousel-dots .cdot');
+    if(list && dots.length) {
+      list.addEventListener('scroll', () => {
+        const index = Math.round(list.scrollLeft / list.clientWidth);
+        dots.forEach((d, i) => {
+          if (i === index) d.classList.add('active');
+          else d.classList.remove('active');
+        });
+      });
+    }
+  });
+</script>

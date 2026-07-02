@@ -1,7 +1,13 @@
 ---
 ---
 <section class="hero">
+  <canvas id="scene"></canvas>
   <div class="grid-texture"></div>
+  <div class="mobile-status">
+    <div class="m-card"><span class="dot"></span> ESTADO OPERATIVO: ACTIVO</div>
+    <div class="m-card">MONITOREO · 24/7 · 365</div>
+    <div class="m-card">ROSARIO · SANTA FE · AR</div>
+  </div>
   <div class="hero-inner">
     <div>
       <div class="eyebrow">Seguridad privada integral</div>
@@ -13,120 +19,261 @@
       </div>
     </div>
     <div class="hero-shield">
-      <div class="radar-scope" aria-hidden="true">
-        <div class="radar-scope-glow"></div>
-        <div class="radar-scope-sweep"></div>
-        <svg viewBox="0 0 640 640">
-          <circle cx="320" cy="320" r="80" fill="none" stroke="var(--line)" stroke-width="1" />
-          <circle cx="320" cy="320" r="150" fill="none" stroke="var(--line)" stroke-width="1" />
-          <circle cx="320" cy="320" r="220" fill="none" stroke="var(--line)" stroke-width="1" />
-          <circle cx="320" cy="320" r="290" fill="none" stroke="var(--line)" stroke-width="1" />
-          <line x1="320" y1="30" x2="320" y2="610" stroke="var(--line)" stroke-width="1" />
-          <line x1="30" y1="320" x2="610" y2="320" stroke="var(--line)" stroke-width="1" />
-          <line x1="115" y1="115" x2="525" y2="525" stroke="var(--line)" stroke-width="1" opacity="0.6" />
-          <line x1="525" y1="115" x2="115" y2="525" stroke="var(--line)" stroke-width="1" opacity="0.6" />
-
-          <line x1="373.7" y1="442.7" x2="363.3" y2="450.9" stroke="var(--accent)" stroke-width="1" opacity="0.06" />
-          <line x1="373.7" y1="442.7" x2="411.8" y2="434.5" stroke="var(--accent)" stroke-width="1" opacity="0.08" />
-          <line x1="373.7" y1="442.7" x2="399.7" y2="444.9" stroke="var(--accent)" stroke-width="1" opacity="0.1" />
-          <line x1="373.7" y1="442.7" x2="400.7" y2="498.3" stroke="var(--accent)" stroke-width="1" opacity="0.07" />
-          <line x1="163" y1="392.9" x2="150.9" y2="369" stroke="var(--accent)" stroke-width="1" opacity="0.16" />
-          <line x1="163" y1="392.9" x2="159.6" y2="388.2" stroke="var(--accent)" stroke-width="1" opacity="0.08" />
-          <line x1="163" y1="392.9" x2="168" y2="420.3" stroke="var(--accent)" stroke-width="1" opacity="0.11" />
-          <line x1="121.4" y1="263.6" x2="103.9" y2="284.9" stroke="var(--accent)" stroke-width="1" opacity="0.08" />
-          <line x1="121.4" y1="263.6" x2="94.4" y2="252.5" stroke="var(--accent)" stroke-width="1" opacity="0.13" />
-          <line x1="150.9" y1="369" x2="145.5" y2="360" stroke="var(--accent)" stroke-width="1" opacity="0.11" />
-          <line x1="150.9" y1="369" x2="168" y2="420.3" stroke="var(--accent)" stroke-width="1" opacity="0.1" />
-          <line x1="58.4" y1="206.4" x2="94.4" y2="252.5" stroke="var(--accent)" stroke-width="1" opacity="0.14" />
-          <line x1="363.3" y1="450.9" x2="411.8" y2="434.5" stroke="var(--accent)" stroke-width="1" opacity="0.13" />
-          <line x1="363.3" y1="450.9" x2="399.7" y2="444.9" stroke="var(--accent)" stroke-width="1" opacity="0.14" />
-          <line x1="363.3" y1="450.9" x2="359.5" y2="501.6" stroke="var(--accent)" stroke-width="1" opacity="0.11" />
-          <line x1="363.3" y1="450.9" x2="331.4" y2="440.7" stroke="var(--accent)" stroke-width="1" opacity="0.12" />
-          <line x1="111.7" y1="448.9" x2="168" y2="420.3" stroke="var(--accent)" stroke-width="1" opacity="0.06" />
-          <line x1="111.7" y1="448.9" x2="106.9" y2="484.5" stroke="var(--accent)" stroke-width="1" opacity="0.13" />
-          <line x1="487.5" y1="482.2" x2="453.9" y2="525.6" stroke="var(--accent)" stroke-width="1" opacity="0.1" />
-          <line x1="159.6" y1="388.2" x2="145.5" y2="360" stroke="var(--accent)" stroke-width="1" opacity="0.15" />
-          <line x1="411.8" y1="434.5" x2="399.7" y2="444.9" stroke="var(--accent)" stroke-width="1" opacity="0.12" />
-          <line x1="411.8" y1="434.5" x2="400.7" y2="498.3" stroke="var(--accent)" stroke-width="1" opacity="0.11" />
-          <line x1="263.6" y1="524.4" x2="310.3" y2="482.1" stroke="var(--accent)" stroke-width="1" opacity="0.07" />
-          <line x1="263.6" y1="524.4" x2="251.4" y2="482.2" stroke="var(--accent)" stroke-width="1" opacity="0.16" />
-          <line x1="399.7" y1="444.9" x2="400.7" y2="498.3" stroke="var(--accent)" stroke-width="1" opacity="0.15" />
-          <line x1="399.7" y1="444.9" x2="346.6" y2="458.5" stroke="var(--accent)" stroke-width="1" opacity="0.16" />
-          <line x1="310.3" y1="482.1" x2="331.4" y2="440.7" stroke="var(--accent)" stroke-width="1" opacity="0.11" />
-          <line x1="453.9" y1="525.6" x2="400.7" y2="498.3" stroke="var(--accent)" stroke-width="1" opacity="0.16" />
-          <line x1="147.5" y1="196.9" x2="203.2" y2="173.2" stroke="var(--accent)" stroke-width="1" opacity="0.14" />
-          <line x1="103.9" y1="284.9" x2="94.4" y2="252.5" stroke="var(--accent)" stroke-width="1" opacity="0.09" />
-          <line x1="395.5" y1="222" x2="453.3" y2="223.7" stroke="var(--accent)" stroke-width="1" opacity="0.07" />
-          <line x1="264.4" y1="400.8" x2="284.9" y2="412.2" stroke="var(--accent)" stroke-width="1" opacity="0.12" />
-          <line x1="400.7" y1="498.3" x2="359.5" y2="501.6" stroke="var(--accent)" stroke-width="1" opacity="0.09" />
-          <line x1="304.6" y1="214.5" x2="340" y2="166.2" stroke="var(--accent)" stroke-width="1" opacity="0.08" />
-          <line x1="237.8" y1="117.6" x2="252.5" y2="141.7" stroke="var(--accent)" stroke-width="1" opacity="0.13" />
-          <line x1="237.8" y1="117.6" x2="207.5" y2="159.5" stroke="var(--accent)" stroke-width="1" opacity="0.06" />
-          <line x1="237.8" y1="117.6" x2="243.5" y2="111.1" stroke="var(--accent)" stroke-width="1" opacity="0.12" />
-          <line x1="237.8" y1="117.6" x2="203.2" y2="173.2" stroke="var(--accent)" stroke-width="1" opacity="0.09" />
-          <line x1="252.5" y1="141.7" x2="207.5" y2="159.5" stroke="var(--accent)" stroke-width="1" opacity="0.1" />
-          <line x1="252.5" y1="141.7" x2="243.5" y2="111.1" stroke="var(--accent)" stroke-width="1" opacity="0.07" />
-          <line x1="252.5" y1="141.7" x2="203.2" y2="173.2" stroke="var(--accent)" stroke-width="1" opacity="0.15" />
-          <line x1="359.5" y1="501.6" x2="346.6" y2="458.5" stroke="var(--accent)" stroke-width="1" opacity="0.08" />
-          <line x1="359.5" y1="501.6" x2="331.4" y2="440.7" stroke="var(--accent)" stroke-width="1" opacity="0.11" />
-          <line x1="207.5" y1="159.5" x2="243.5" y2="111.1" stroke="var(--accent)" stroke-width="1" opacity="0.08" />
-          <line x1="207.5" y1="159.5" x2="203.2" y2="173.2" stroke="var(--accent)" stroke-width="1" opacity="0.09" />
-          <line x1="280.7" y1="412.4" x2="284.9" y2="412.2" stroke="var(--accent)" stroke-width="1" opacity="0.14" />
-          <line x1="346.6" y1="458.5" x2="331.4" y2="440.7" stroke="var(--accent)" stroke-width="1" opacity="0.13" />
-
-          <circle cx="373.7" cy="442.7" r="2.46" fill="var(--silver-bright)" opacity="0.6" />
-          <circle cx="163" cy="392.9" r="1.95" fill="var(--silver-bright)" opacity="0.55" />
-          <circle cx="121.4" cy="263.6" r="2.19" fill="var(--silver-bright)" opacity="0.35" />
-          <circle cx="150.9" cy="369" r="1.36" fill="var(--silver-bright)" opacity="0.69" />
-          <circle cx="58.4" cy="206.4" r="2.14" fill="var(--silver-bright)" opacity="0.3" />
-          <circle cx="363.3" cy="450.9" r="1.81" fill="var(--silver-bright)" opacity="0.41" />
-          <circle cx="111.7" cy="448.9" r="2.31" fill="var(--silver-bright)" opacity="0.36" />
-          <circle cx="487.5" cy="482.2" r="1.33" fill="var(--silver-bright)" opacity="0.66" />
-          <circle cx="398.7" cy="567.3" r="1.06" fill="var(--silver-bright)" opacity="0.56" />
-          <circle cx="159.6" cy="388.2" r="1.49" fill="var(--silver-bright)" opacity="0.26" />
-          <circle cx="411.8" cy="434.5" r="1.59" fill="var(--silver-bright)" opacity="0.56" />
-          <circle cx="263.6" cy="524.4" r="1.8" fill="var(--silver-bright)" opacity="0.51" />
-          <circle cx="504.7" cy="94.8" r="2.23" fill="var(--silver-bright)" opacity="0.27" />
-          <circle cx="399.7" cy="444.9" r="1.23" fill="var(--silver-bright)" opacity="0.32" />
-          <circle cx="310.3" cy="482.1" r="1.41" fill="var(--silver-bright)" opacity="0.34" />
-          <circle cx="453.9" cy="525.6" r="1.97" fill="var(--silver-bright)" opacity="0.54" />
-          <circle cx="147.5" cy="196.9" r="1.1" fill="var(--silver-bright)" opacity="0.35" />
-          <circle cx="294.8" cy="584.7" r="1.4" fill="var(--silver-bright)" opacity="0.41" />
-          <circle cx="103.9" cy="284.9" r="2.08" fill="var(--silver-bright)" opacity="0.66" />
-          <circle cx="395.5" cy="222" r="2.56" fill="var(--silver-bright)" opacity="0.6" />
-          <circle cx="251.4" cy="482.2" r="2.4" fill="var(--silver-bright)" opacity="0.71" />
-          <circle cx="542.2" cy="274.3" r="2.05" fill="var(--silver-bright)" opacity="0.52" />
-          <circle cx="264.4" cy="400.8" r="1.68" fill="var(--silver-bright)" opacity="0.6" />
-          <circle cx="453.3" cy="223.7" r="2.11" fill="var(--silver-bright)" opacity="0.35" />
-          <circle cx="400.7" cy="498.3" r="2.48" fill="var(--silver-bright)" opacity="0.76" />
-          <circle cx="414.3" cy="357.2" r="1.87" fill="var(--silver-bright)" opacity="0.61" />
-          <circle cx="94.4" cy="252.5" r="1.66" fill="var(--silver-bright)" opacity="0.64" />
-          <circle cx="145.5" cy="360" r="2.22" fill="var(--silver-bright)" opacity="0.31" />
-          <circle cx="304.6" cy="214.5" r="1.22" fill="var(--silver-bright)" opacity="0.48" />
-          <circle cx="237.8" cy="117.6" r="2.05" fill="var(--silver-bright)" opacity="0.34" />
-          <circle cx="252.5" cy="141.7" r="2.39" fill="var(--silver-bright)" opacity="0.39" />
-          <circle cx="168" cy="420.3" r="2.59" fill="var(--silver-bright)" opacity="0.31" />
-          <circle cx="359.5" cy="501.6" r="2.25" fill="var(--silver-bright)" opacity="0.74" />
-          <circle cx="106.9" cy="484.5" r="1.65" fill="var(--silver-bright)" opacity="0.46" />
-          <circle cx="531.3" cy="167.8" r="1.67" fill="var(--silver-bright)" opacity="0.3" />
-          <circle cx="202.3" cy="312.3" r="1.53" fill="var(--silver-bright)" opacity="0.63" />
-          <circle cx="207.5" cy="159.5" r="1.16" fill="var(--silver-bright)" opacity="0.57" />
-          <circle cx="280.7" cy="412.4" r="2.45" fill="var(--silver-bright)" opacity="0.29" />
-          <circle cx="340" cy="166.2" r="2.53" fill="var(--silver-bright)" opacity="0.31" />
-          <circle cx="346.6" cy="458.5" r="2.15" fill="var(--silver-bright)" opacity="0.44" />
-          <circle cx="395.3" cy="185.8" r="2.5" fill="var(--silver-bright)" opacity="0.71" />
-          <circle cx="331.4" cy="440.7" r="2.38" fill="var(--silver-bright)" opacity="0.69" />
-          <circle cx="243.5" cy="111.1" r="1.91" fill="var(--silver-bright)" opacity="0.61" />
-          <circle cx="568.3" cy="433" r="2.66" fill="var(--silver-bright)" opacity="0.34" />
-          <circle cx="284.9" cy="412.2" r="1.87" fill="var(--silver-bright)" opacity="0.28" />
-          <circle cx="203.2" cy="173.2" r="2.78" fill="var(--silver-bright)" opacity="0.45" />
-        </svg>
-      </div>
+      <div class="hero-shield-ring"></div>
+      <div class="hero-shield-ring r2"></div>
       <div class="hero-shield-frame">
-        <div class="hero-shield-ring"></div>
-        <img src="/rdr-logo.jpg" alt="Escudo RDR" />
+        <img src="/rdr-logo.png" alt="Escudo RDR" />
       </div>
     </div>
   </div>
   <div class="scroll-cue"><div class="line"></div>SCROLL</div>
 </section>
+
+<script>
+(function(){
+  const canvas = document.getElementById('scene') as HTMLCanvasElement;
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if(!ctx) return;
+  let W: number, H: number, DPR: number;
+
+  const ACCENT = [91,143,199];
+  const SILVER = [238,241,245];
+  const BRIGHT = [150,195,240];
+
+  let mapDots: any[] = [], netNodes: any[] = [], netLinks: any[] = [], pulses: any[] = [], pings: any[] = [];
+  let center = {x:0, y:0}, radarR = 0, sweep = 0;
+  const SWEEP_SPEED = 0.9;
+
+  // Continentes: [x, y, rx, ry] normalizados sobre el mapa
+  const CONT = [
+    [0.15,0.24,0.075,0.10],[0.20,0.31,0.06,0.09],[0.12,0.34,0.04,0.06],[0.23,0.20,0.055,0.05],
+    [0.31,0.13,0.03,0.055],
+    [0.26,0.57,0.05,0.075],[0.28,0.68,0.042,0.09],[0.255,0.80,0.02,0.05],
+    [0.485,0.24,0.045,0.05],[0.46,0.30,0.03,0.04],
+    [0.505,0.47,0.05,0.07],[0.525,0.58,0.045,0.08],[0.505,0.67,0.03,0.055],
+    [0.62,0.25,0.085,0.09],[0.71,0.21,0.085,0.07],[0.66,0.34,0.06,0.06],
+    [0.60,0.30,0.04,0.05],[0.745,0.35,0.05,0.05],[0.79,0.41,0.04,0.04],
+    [0.82,0.70,0.05,0.05],
+    [0.80,0.30,0.016,0.032],[0.765,0.47,0.03,0.02]
+  ];
+
+  function inContinent(nx: number, ny: number){
+    for(let i=0;i<CONT.length;i++){
+      const c=CONT[i];
+      const dx=(nx-c[0])/c[2], dy=(ny-c[1])/c[3];
+      const d = dx*dx+dy*dy;
+      const edge = 1 + (Math.sin(nx*57.1+ny*31.7)*0.18);
+      if(d < edge) return true;
+    }
+    return false;
+  }
+
+  function lerp(a: number[], b: number[], t: number){ t=Math.max(0,Math.min(1,t));
+    return [Math.round(a[0]+(b[0]-a[0])*t),Math.round(a[1]+(b[1]-a[1])*t),Math.round(a[2]+(b[2]-a[2])*t)]; }
+
+  function angDiff(a: number, b: number){ let d=(a-b)%(Math.PI*2); if(d<0)d+=Math.PI*2; return d; }
+
+  function build(){
+    if(!canvas) return;
+    DPR = Math.min(window.devicePixelRatio||1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W*DPR; canvas.height = H*DPR;
+    ctx!.setTransform(DPR,0,0,DPR,0,0);
+
+    center.x = W*0.685;
+    center.y = H*0.52;
+    radarR = Math.min(W*0.34, H*0.46);
+
+    const mapX0 = W*0.30, mapX1 = W*1.02;
+    const mapY0 = H*0.10, mapY1 = H*0.94;
+    const mapW = mapX1-mapX0, mapH = mapY1-mapY0;
+    const step = Math.max(8, Math.round(W/150));
+
+    mapDots = [];
+    for(let x=mapX0; x<mapX1; x+=step){
+      for(let y=mapY0; y<mapY1; y+=step){
+        const nx=(x-mapX0)/mapW, ny=(y-mapY0)/mapH;
+        if(inContinent(nx,ny)){
+          const px=x+(Math.random()-0.5)*step*0.5;
+          const py=y+(Math.random()-0.5)*step*0.5;
+          const ang=(Math.atan2(py-center.y, px-center.x)+Math.PI*2)%(Math.PI*2);
+          mapDots.push({x:px,y:py,ang:ang,base:0.18+Math.random()*0.22,
+            tw:Math.random()*Math.PI*2, r:0.9+Math.random()*0.7, glow:0});
+        }
+      }
+    }
+
+    netNodes = [];
+    const NODE_COUNT = Math.round(W/26);
+    for(let i=0;i<NODE_COUNT;i++){
+      const bias = Math.pow(Math.random(),0.7);
+      const px = mapX0 + mapW*(0.15 + bias*0.85);
+      const py = mapY0 + mapH*Math.random();
+      const ang=(Math.atan2(py-center.y, px-center.x)+Math.PI*2)%(Math.PI*2);
+      netNodes.push({x:px,y:py,ang:ang,r:1.1+Math.random()*1.7,
+        tw:Math.random()*Math.PI*2, glow:0});
+    }
+    netLinks = [];
+    const maxD = W*0.11;
+    for(let i=0;i<netNodes.length;i++){
+      let cnt=0;
+      for(let j=i+1;j<netNodes.length && cnt<3;j++){
+        const dx=netNodes[i].x-netNodes[j].x, dy=netNodes[i].y-netNodes[j].y;
+        const d=Math.hypot(dx,dy);
+        if(d<maxD){ netLinks.push({a:i,b:j}); cnt++; }
+      }
+    }
+    pulses = [];
+    for(let k=0;k<Math.min(14,netLinks.length);k++){
+      pulses.push({link:(Math.random()*netLinks.length)|0, t:Math.random(), sp:0.15+Math.random()*0.25});
+    }
+  }
+
+  let last = performance.now();
+  let pingTimer = 0;
+
+  function frame(now: number){
+    if(!canvas || !ctx) return;
+    const dt = Math.min(0.05,(now-last)/1000); last=now;
+    sweep = (sweep + SWEEP_SPEED*dt) % (Math.PI*2);
+    ctx.clearRect(0,0,W,H);
+
+    // Resplandor central
+    const g = ctx.createRadialGradient(center.x,center.y,0,center.x,center.y,radarR*1.15);
+    g.addColorStop(0,'rgba(91,143,199,0.16)');
+    g.addColorStop(0.45,'rgba(91,143,199,0.05)');
+    g.addColorStop(1,'rgba(91,143,199,0)');
+    ctx.fillStyle=g;
+    ctx.beginPath(); ctx.arc(center.x,center.y,radarR*1.15,0,Math.PI*2); ctx.fill();
+
+    // Mapa mundial
+    const trail = 0.7;
+    for(let i=0;i<mapDots.length;i++){
+      const d=mapDots[i];
+      const behind = angDiff(sweep, d.ang);
+      const dist = Math.hypot(d.x-center.x, d.y-center.y);
+      let target = 0;
+      if(behind < trail && dist < radarR*1.05){
+        target = (1 - behind/trail) * (1 - dist/(radarR*1.15))*1.4;
+      }
+      if(target > d.glow) d.glow = target;
+      d.glow *= 0.955;
+      d.tw += dt*1.5;
+      const tw = 0.5 + 0.5*Math.sin(d.tw);
+      const b = Math.min(1, d.base*(0.7+0.3*tw) + d.glow);
+      const col = lerp(SILVER,ACCENT,d.glow*0.6);
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r + d.glow*0.9, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba('+col[0]+','+col[1]+','+col[2]+','+b+')';
+      ctx.fill();
+    }
+
+    // Anillos radar
+    if (W > 600) {
+      ctx.lineWidth=1;
+      for(let i=1;i<=4;i++){
+        ctx.beginPath();
+        ctx.arc(center.x,center.y,radarR*i/4,0,Math.PI*2);
+        ctx.strokeStyle='rgba(199,207,218,0.10)';
+        ctx.stroke();
+      }
+      ctx.strokeStyle='rgba(199,207,218,0.08)';
+      ctx.beginPath();
+      ctx.moveTo(center.x-radarR,center.y); ctx.lineTo(center.x+radarR,center.y);
+      ctx.moveTo(center.x,center.y-radarR); ctx.lineTo(center.x,center.y+radarR);
+      ctx.stroke();
+
+      // Haz de barrido
+      ctx.save();
+      ctx.translate(center.x,center.y);
+      ctx.rotate(sweep);
+      const seg=26, span=0.85;
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      for(let i=0;i<=seg;i++){
+        const a=-span*(i/seg);
+        ctx.lineTo(Math.cos(a)*radarR, Math.sin(a)*radarR);
+      }
+      ctx.closePath();
+      const lg = ctx.createRadialGradient(0,0,0,0,0,radarR);
+      lg.addColorStop(0,'rgba(91,143,199,0.35)');
+      lg.addColorStop(0.5,'rgba(91,143,199,0.14)');
+      lg.addColorStop(1,'rgba(91,143,199,0)');
+      ctx.fillStyle=lg;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0,0); ctx.lineTo(radarR,0);
+      const lgl = ctx.createLinearGradient(0,0,radarR,0);
+      lgl.addColorStop(0,'rgba(140,190,240,0.7)');
+      lgl.addColorStop(1,'rgba(91,143,199,0)');
+      ctx.strokeStyle=lgl; ctx.lineWidth=2; ctx.stroke();
+      ctx.restore();
+    }
+
+    // Conexiones
+    ctx.strokeStyle='rgba(91,143,199,0.12)';
+    ctx.lineWidth=0.7;
+    for(let i=0;i<netLinks.length;i++){
+      const a=netNodes[netLinks[i].a], b=netNodes[netLinks[i].b];
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    }
+    // Pulsos
+    for(let i=0;i<pulses.length;i++){
+      const p=pulses[i];
+      p.t += p.sp*dt;
+      if(p.t>1){ p.t=0; p.link=(Math.random()*netLinks.length)|0; }
+      const l=netLinks[p.link]; if(!l) continue;
+      const a=netNodes[l.a], b=netNodes[l.b];
+      const px=a.x+(b.x-a.x)*p.t, py=a.y+(b.y-a.y)*p.t;
+      ctx.beginPath(); ctx.arc(px,py,1.4,0,Math.PI*2);
+      ctx.fillStyle='rgba(150,195,240,0.9)'; ctx.fill();
+    }
+
+    // Nodos
+    for(let i=0;i<netNodes.length;i++){
+      const n=netNodes[i];
+      const behind = angDiff(sweep, n.ang);
+      const dist = Math.hypot(n.x-center.x, n.y-center.y);
+      let target=0;
+      if(behind < trail && dist < radarR*1.05){ target=(1-behind/trail); }
+      if(target>n.glow) n.glow=target;
+      n.glow*=0.95;
+      n.tw+=dt*2;
+      const tw=0.55+0.45*Math.sin(n.tw);
+      const rr=n.r*(0.85+0.15*tw)+n.glow*1.2;
+      if(n.glow>0.05){
+        ctx.beginPath(); ctx.arc(n.x,n.y,rr*3,0,Math.PI*2);
+        ctx.fillStyle='rgba(91,143,199,'+(0.12*n.glow)+')'; ctx.fill();
+      }
+      const col=lerp(SILVER,BRIGHT,n.glow);
+      ctx.beginPath(); ctx.arc(n.x,n.y,rr,0,Math.PI*2);
+      ctx.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(0.55+0.4*tw)+')'; ctx.fill();
+    }
+
+    // Pings
+    pingTimer -= dt;
+    if(pingTimer<=0){
+      pingTimer = 1.6 + Math.random()*2.2;
+      const a=Math.random()*Math.PI*2;
+      const rr=Math.random()*radarR*0.85;
+      pings.push({x:center.x+Math.cos(a)*rr, y:center.y+Math.sin(a)*rr, t:0});
+    }
+    for(let i=pings.length-1;i>=0;i--){
+      const p=pings[i]; p.t+=dt;
+      const rad=p.t*40; const al=Math.max(0,1-p.t/1.4);
+      ctx.beginPath(); ctx.arc(p.x,p.y,rad,0,Math.PI*2);
+      ctx.strokeStyle='rgba(140,190,240,'+(al*0.6)+')'; ctx.lineWidth=1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(p.x,p.y,2,0,Math.PI*2);
+      ctx.fillStyle='rgba(150,195,240,'+al+')'; ctx.fill();
+      if(p.t>1.5) pings.splice(i,1);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', build);
+  build();
+  requestAnimationFrame(frame);
+})();
+</script>
