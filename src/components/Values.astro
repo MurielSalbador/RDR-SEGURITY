@@ -28,3 +28,17 @@ const values = [
     </div>
   </div>
 </section>
+
+<script>
+  function setupValues() {
+    const cards = document.querySelectorAll('.value-card');
+    const isDesktop = window.innerWidth > 768;
+    cards.forEach(card => {
+      if (isDesktop) {
+        card.setAttribute('open', 'true');
+      }
+    });
+  }
+  window.addEventListener('resize', setupValues);
+  setupValues();
+</script>

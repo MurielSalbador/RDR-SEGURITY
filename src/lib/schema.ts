@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const SERVICE_OPTIONS = [
+  'Análisis técnico de seguridad',
   'Portería y control de accesos',
   'Monitoreo',
   'Patrullaje',
