@@ -53,6 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
           `Teléfono: ${data.phone}`,
           `Correo: ${data.email}`,
           `Servicio: ${data.serviceType}`,
+          `Horario de contacto: ${data.contactTime}`,
           '',
           'Mensaje:',
           data.message,

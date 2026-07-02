@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { contactSchema, SERVICE_OPTIONS } from '../lib/schema';
+import { contactSchema, SERVICE_OPTIONS, CONTACT_TIME_OPTIONS } from '../lib/schema';
 
-type FieldErrors = Partial<Record<'name' | 'phone' | 'email' | 'serviceType' | 'message', string>>;
+type FieldErrors = Partial<Record<'name' | 'phone' | 'email' | 'serviceType' | 'contactTime' | 'message', string>>;
 type Status = { type: 'idle' | 'sending' | 'ok' | 'err'; message?: string };
 
 const initialValues = {
@@ -9,6 +9,7 @@ const initialValues = {
   phone: '',
   email: '',
   serviceType: '' as (typeof SERVICE_OPTIONS)[number] | '',
+  contactTime: '' as (typeof CONTACT_TIME_OPTIONS)[number] | '',
   message: '',
   website: '',
 };
@@ -103,24 +104,37 @@ export default function ContactForm() {
         {errors.email && <span className="field-error-msg">{errors.email}</span>}
       </div>
 
-      <div className="field">
-        <label htmlFor="serviceType">Tipo de servicio</label>
-        <select
-          id="serviceType"
-          value={values.serviceType}
-          onInput={handleChange('serviceType')}
-          className={errors.serviceType ? 'field-error' : ''}
-        >
-          <option value="" disabled>
-            Elegí una opción
-          </option>
-          {SERVICE_OPTIONS.map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
-        {errors.serviceType && <span className="field-error-msg">{errors.serviceType}</span>}
+      <div className="row2">
+        <div className="field">
+          <label htmlFor="serviceType">Tipo de servicio</label>
+          <select
+            id="serviceType"
+            value={values.serviceType}
+            onInput={handleChange('serviceType')}
+            className={errors.serviceType ? 'field-error' : ''}
+          >
+            <option value="" disabled>Elegí una opción</option>
+            {SERVICE_OPTIONS.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+          {errors.serviceType && <span className="field-error-msg">{errors.serviceType}</span>}
+        </div>
+        <div className="field">
+          <label htmlFor="contactTime">Horario de contacto</label>
+          <select
+            id="contactTime"
+            value={values.contactTime}
+            onInput={handleChange('contactTime')}
+            className={errors.contactTime ? 'field-error' : ''}
+          >
+            <option value="" disabled>Elegí un horario</option>
+            {CONTACT_TIME_OPTIONS.map((opt) => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+          {errors.contactTime && <span className="field-error-msg">{errors.contactTime}</span>}
+        </div>
       </div>
 
       <div className="field">
