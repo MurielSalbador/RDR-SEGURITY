@@ -8,23 +8,55 @@ export const prerender = false;
 const CONTACT_TO_EMAIL = import.meta.env.CONTACT_TO_EMAIL || 'Rdr.seguridadprivada@gmail.com';
 const CONTACT_FROM_EMAIL = import.meta.env.CONTACT_FROM_EMAIL || 'RDR Seguridad Privada <onboarding@resend.dev>';
 
-export const POST: APIRoute = async ({ request }) => {
+// Rate limit simple por IP, en memoria de la instancia serverless. No es
+// perfecto (cada instancia tiene su propio contador), pero corta el spam
+// básico sin depender de servicios externos.
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const hits = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const cutoff = now - RATE_LIMIT_WINDOW_MS;
+
+  // Poda periódica para que el Map no crezca sin límite.
+  if (hits.size > 500) {
+    for (const [key, times] of hits) {
+      if (times.every((t) => t < cutoff)) hits.delete(key);
+    }
+  }
+
+  const recent = (hits.get(ip) ?? []).filter((t) => t >= cutoff);
+  if (recent.length >= RATE_LIMIT_MAX) {
+    hits.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  hits.set(ip, recent);
+  return false;
+}
+
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  if (isRateLimited(clientAddress)) {
+    return json({ error: 'Demasiados intentos. Esperá unos minutos y volvé a probar.' }, 429);
+  }
+
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return jsonError('Solicitud inválida.', 400);
+    return json({ error: 'Solicitud inválida.' }, 400);
   }
 
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
-    return jsonError('Datos inválidos. Revisá el formulario.', 422);
+    return json({ error: 'Datos inválidos. Revisá el formulario.' }, 422);
   }
 
   const { website, ...data } = parsed.data;
   if (website) {
     // Honeypot triggered — silently pretend success so bots don't learn.
-    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+    return json({ ok: true }, 200);
   }
 
   try {
@@ -36,7 +68,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   } catch (err) {
     console.error('Error guardando la consulta en la base de datos', err);
-    return jsonError('No pudimos guardar tu consulta. Intentá nuevamente en unos minutos.', 500);
+    return json({ error: 'No pudimos guardar tu consulta. Intentá nuevamente en unos minutos.' }, 500);
   }
 
   const resendApiKey = import.meta.env.RESEND_API_KEY;
@@ -67,14 +99,11 @@ export const POST: APIRoute = async ({ request }) => {
     console.warn('RESEND_API_KEY no configurada — se omitió el envío de correo.');
   }
 
-  return new Response(JSON.stringify({ ok: true }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return json({ ok: true }, 200);
 };
 
-function jsonError(message: string, status: number) {
-  return new Response(JSON.stringify({ error: message }), {
+function json(payload: Record<string, unknown>, status: number) {
+  return new Response(JSON.stringify(payload), {
     status,
     headers: { 'Content-Type': 'application/json' },
   });

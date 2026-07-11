@@ -36,6 +36,8 @@ const values = [
     cards.forEach(card => {
       if (isDesktop) {
         card.setAttribute('open', 'true');
+      } else {
+        card.removeAttribute('open');
       }
     });
   }

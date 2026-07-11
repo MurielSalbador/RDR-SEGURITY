@@ -69,25 +69,33 @@ export default function ContactForm() {
           <label htmlFor="name">Nombre</label>
           <input
             id="name"
+            name="name"
             type="text"
+            autoComplete="name"
             placeholder="Tu nombre"
             value={values.name}
             onInput={handleChange('name')}
             className={errors.name ? 'field-error' : ''}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? 'name-error' : undefined}
           />
-          {errors.name && <span className="field-error-msg">{errors.name}</span>}
+          {errors.name && <span id="name-error" className="field-error-msg">{errors.name}</span>}
         </div>
         <div className="field">
           <label htmlFor="phone">Teléfono</label>
           <input
             id="phone"
-            type="text"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
             placeholder="Tu teléfono"
             value={values.phone}
             onInput={handleChange('phone')}
             className={errors.phone ? 'field-error' : ''}
+            aria-invalid={Boolean(errors.phone)}
+            aria-describedby={errors.phone ? 'phone-error' : undefined}
           />
-          {errors.phone && <span className="field-error-msg">{errors.phone}</span>}
+          {errors.phone && <span id="phone-error" className="field-error-msg">{errors.phone}</span>}
         </div>
       </div>
 
@@ -95,13 +103,17 @@ export default function ContactForm() {
         <label htmlFor="email">Correo electrónico</label>
         <input
           id="email"
+          name="email"
           type="email"
+          autoComplete="email"
           placeholder="tu@correo.com"
           value={values.email}
           onInput={handleChange('email')}
           className={errors.email ? 'field-error' : ''}
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? 'email-error' : undefined}
         />
-        {errors.email && <span className="field-error-msg">{errors.email}</span>}
+        {errors.email && <span id="email-error" className="field-error-msg">{errors.email}</span>}
       </div>
 
       <div className="row2">
@@ -109,31 +121,37 @@ export default function ContactForm() {
           <label htmlFor="serviceType">Tipo de servicio</label>
           <select
             id="serviceType"
+            name="serviceType"
             value={values.serviceType}
             onInput={handleChange('serviceType')}
             className={errors.serviceType ? 'field-error' : ''}
+            aria-invalid={Boolean(errors.serviceType)}
+            aria-describedby={errors.serviceType ? 'serviceType-error' : undefined}
           >
             <option value="" disabled>Elegí una opción</option>
             {SERVICE_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
           </select>
-          {errors.serviceType && <span className="field-error-msg">{errors.serviceType}</span>}
+          {errors.serviceType && <span id="serviceType-error" className="field-error-msg">{errors.serviceType}</span>}
         </div>
         <div className="field">
           <label htmlFor="contactTime">Horario de contacto</label>
           <select
             id="contactTime"
+            name="contactTime"
             value={values.contactTime}
             onInput={handleChange('contactTime')}
             className={errors.contactTime ? 'field-error' : ''}
+            aria-invalid={Boolean(errors.contactTime)}
+            aria-describedby={errors.contactTime ? 'contactTime-error' : undefined}
           >
             <option value="" disabled>Elegí un horario</option>
             {CONTACT_TIME_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
           </select>
-          {errors.contactTime && <span className="field-error-msg">{errors.contactTime}</span>}
+          {errors.contactTime && <span id="contactTime-error" className="field-error-msg">{errors.contactTime}</span>}
         </div>
       </div>
 
@@ -141,12 +159,15 @@ export default function ContactForm() {
         <label htmlFor="message">Mensaje</label>
         <textarea
           id="message"
+          name="message"
           placeholder="Contanos brevemente qué necesitás..."
           value={values.message}
           onInput={handleChange('message')}
           className={errors.message ? 'field-error' : ''}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? 'message-error' : undefined}
         />
-        {errors.message && <span className="field-error-msg">{errors.message}</span>}
+        {errors.message && <span id="message-error" className="field-error-msg">{errors.message}</span>}
       </div>
 
       {/* honeypot — hidden from real users, bots tend to fill every field */}

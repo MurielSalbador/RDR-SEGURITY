@@ -1,6 +1,6 @@
 ---
 ---
-<header>
+<header id="site-header">
   <div class="status-bar desktop-status">
     <div class="container">
       <div class="status-item"><span class="dot"></span> ESTADO OPERATIVO: ACTIVO</div>
@@ -10,7 +10,7 @@
   </div>
   <div class="nav-wrap">
     <div class="brand">
-      <img src="/rdr-logo.jpg" alt="RDR Seguridad Privada" />
+      <img src="/rdr-logo-nav.webp" alt="RDR Seguridad Privada" width="84" height="84" />
       <div class="brand-text">RDR<span>Seguridad Privada</span></div>
     </div>
     <nav>
@@ -23,5 +23,39 @@
       </ul>
     </nav>
     <a class="nav-cta" href="#contacto">Solicitar cotización</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#equipamiento">Equipamiento</a></li>
+      <li><a href="#porque">Por qué elegirnos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a class="mobile-cta" href="#contacto">Solicitar cotización</a></li>
+    </ul>
   </div>
 </header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (header && toggle && menu) {
+    const setOpen = (open: boolean) => {
+      header.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+    toggle.addEventListener('click', () => {
+      setOpen(!header.classList.contains('menu-open'));
+    });
+    // Cerrar al elegir una sección.
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+  }
+</script>

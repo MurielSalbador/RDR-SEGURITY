@@ -10,6 +10,27 @@ const {
   title = 'RDR Seguridad Privada — Soluciones integrales de seguridad',
   description = 'Portería, monitoreo, patrullaje y custodia personal para barrios privados, edificios, empresas y hogares. Prevención real, personal capacitado y supervisión constante.',
 } = Astro.props;
+
+// Con `site` configurado en astro.config.mjs se emiten canonical y og:url/og:image absolutas.
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL('/rdr-logo-hero.webp', Astro.site).href : undefined;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'RDR Seguridad Privada',
+  description,
+  email: 'Rdr.seguridadprivada@gmail.com',
+  telephone: '+54 9 341 782-1670',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Sarmiento 756 — Piso 3, Oficina 3',
+    addressLocality: 'Rosario',
+    addressRegion: 'Santa Fe',
+    addressCountry: 'AR',
+  },
+  ...(canonical ? { url: canonical } : {}),
+};
 ---
 
 <!DOCTYPE html>
@@ -19,12 +40,30 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/jpeg" href="/rdr-logo.jpg" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      // Gate de JS: los estados iniciales de animación (.reveal oculto) solo se
+      // aplican si hay JS para revertirlos. Sin JS, el contenido queda visible.
+      document.documentElement.classList.add('js');
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
   </head>
   <body>
     <slot />
@@ -36,31 +75,44 @@ const {
 
       gsap.registerPlugin(ScrollTrigger);
 
-      const lenis = new Lenis({
-        duration: 1.15,
-        smoothWheel: true,
-      });
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      lenis.on('scroll', ScrollTrigger.update);
+      let lenis: Lenis | undefined;
+      if (!reducedMotion) {
+        lenis = new Lenis({
+          duration: 1.15,
+          smoothWheel: true,
+        });
 
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+          lenis!.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+      }
 
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', (e) => {
           const href = anchor.getAttribute('href');
           if (!href || href === '#') return;
           const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
+          if (!target) return;
+          e.preventDefault();
+          if (lenis) {
             lenis.scrollTo(target as HTMLElement, { offset: -90 });
+          } else {
+            const top = (target as HTMLElement).getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({ top });
           }
         });
       });
 
       document.querySelectorAll('.reveal').forEach((el) => {
+        if (reducedMotion) {
+          el.classList.add('is-visible');
+          return;
+        }
         ScrollTrigger.create({
           trigger: el,
           start: 'top 85%',
@@ -71,7 +123,7 @@ const {
 
       const shieldFrame = document.querySelector<HTMLElement>('.hero-shield-frame');
       const heroShield = document.querySelector<HTMLElement>('.hero-shield');
-      if (shieldFrame && heroShield) {
+      if (shieldFrame && heroShield && !reducedMotion) {
         heroShield.addEventListener('mousemove', (e) => {
           const rect = heroShield.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width - 0.5;
