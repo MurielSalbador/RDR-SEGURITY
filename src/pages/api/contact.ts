@@ -5,7 +5,9 @@ import { getDb } from '../../lib/mongodb';
 
 export const prerender = false;
 
-const CONTACT_TO_EMAIL = import.meta.env.CONTACT_TO_EMAIL || 'Rdr.seguridadprivada@gmail.com';
+// En minúsculas: con el remitente de prueba onboarding@resend.dev, Resend
+// compara el destinatario letra por letra contra el mail de la cuenta.
+const CONTACT_TO_EMAIL = import.meta.env.CONTACT_TO_EMAIL || 'rdr.seguridadprivada@gmail.com';
 const CONTACT_FROM_EMAIL = import.meta.env.CONTACT_FROM_EMAIL || 'RDR Seguridad Privada <onboarding@resend.dev>';
 
 // Rate limit simple por IP, en memoria de la instancia serverless. No es
